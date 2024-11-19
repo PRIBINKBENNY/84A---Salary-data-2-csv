@@ -1,2 +1,4 @@
 # College-Works
-all my college work is done in this repo
+All Our group work is in this repo 
+Group no. A84 
+Quintessence
