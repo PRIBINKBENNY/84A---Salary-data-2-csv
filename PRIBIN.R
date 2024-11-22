@@ -35,4 +35,4 @@ ggplot(salary_data, aes(x = median_salary)) +
 
 # Save the plot as a PNG file
 ggsave("median_salary_histogram.png")
-
+hjk
