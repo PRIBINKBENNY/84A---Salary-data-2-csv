@@ -36,3 +36,4 @@ if (nrow(filtered_data) > 0) {
 } else {
   print("Filtered data is empty. Check your dataset and filtering criteria.")
 }
+
