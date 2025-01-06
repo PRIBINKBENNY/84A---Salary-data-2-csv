@@ -1,15 +1,34 @@
 # Load necessary libraries
+library(ggplot2)
 library(dplyr)
+library(caret)
+library(randomForest)
+library(tidyr)
 
-# Assuming your data is in a data frame called 'df' with columns:
-# 'median_salary', 'average_salary', 'continent_name'
+# Load the dataset
+data <- read.csv("salary_data.csv")
 
-# Research Question 1: Correlation between Median and Average Salary within each continent
+# Summary statistics
+summary(data)
 
-# Calculate the Pearson correlation for each continent
-correlations <- df %>%
-  group_by(continent_name) %>%
-  summarize(correlation = cor.test(median_salary, average_salary, method = "pearson", use = "complete.obs")$estimate)
+# Check for missing values
+colSums(is.na(data))
 
-# Print the correlations
-print(correlations)
+# Scatter plot (Median vs Average Salary)
+ggplot(data, aes(x = median_salary, y = average_salary)) +
+  geom_point(color = "blue") +
+  labs(title = "Median vs Average Salary", x = "Median Salary", y = "Average Salary") +
+  theme_minimal()
+
+# Boxplot (Salary by Continent)
+ggplot(data, aes(x = continent_name, y = median_salary)) +
+  geom_boxplot(fill = "cyan") +
+  labs(title = "Salary Distribution by Continent", x = "Continent", y = "Median Salary") +
+  theme_minimal()
+
+# Statistical Test
+cor.test(data$median_salary, data$average_salary)
+
+# Save the enhanced dataset
+write.csv(data, "enhanced_dataset.csv", row.names = FALSE)
+
